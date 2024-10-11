@@ -1,6 +1,7 @@
 // src/components/Signup.tsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { ImagetoBase64 } from "./utility/ImagetoBase64";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -15,6 +16,16 @@ function Signup() {
     impressions: 0,
     location: "",
   });
+
+  const handleUploadProfileImage = async(e) => {
+    const data = await ImagetoBase64(e.target.files[0])
+    setFormData((preve) => {
+      return {
+        ...preve,
+        picturePath : data
+      }
+    })
+  }
 
   const handleChange = (e) => {
     setFormData({
@@ -113,7 +124,8 @@ function Signup() {
         <div>
           <label className="block text-sm font-medium text-gray-700">Profile Picture Path</label>
           <input
-            type="text"
+            type={"file"} accept='image/*' id='picturePath'
+            onChange={handleUploadProfileImage}
             name="picturePath"
             value={formData.picturePath}
             onChange={handleChange}
