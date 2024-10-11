@@ -128,7 +128,6 @@ function Signup() {
             onChange={handleUploadProfileImage}
             name="picturePath"
             value={formData.picturePath}
-            onChange={handleChange}
             className="mt-1 p-2 border border-gray-300 rounded-lg w-full focus:ring-green-500 focus:border-green-500"
             placeholder="Profile Picture Path"
           />
